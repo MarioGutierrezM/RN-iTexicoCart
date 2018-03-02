@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card, CardSection, Input, Button, Spinner, Header } from './common';
+import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
 
     onEmailChange(text) {
-        //this.props.emailChanged(text);
+        this.props.emailChanged(text);
     }
 
     onPasswordChange(text) {
-        //this.props.passwordChanged(text);
+        this.props.passwordChanged(text);
     }
 
     onBottonPress() {
         const { email, password } = this.props;
-        //this.props.loginUser({ email, password });
+        this.props.loginUser({ email, password });
     }
 
+    renderButton() {
+        if (this.props.loading) {
+            return <Spinner size="large" />;
+        }
+
+        return (
+            <Button onPress={this.onBottonPress.bind(this)}>
+                <Icon name="rocket" size={30} color="#900" />
+                Login
+            </Button>
+        );
+    }
 
     render() {
         return (
@@ -40,20 +55,30 @@ class LoginForm extends Component {
                     />
                 </CardSection>
 
-                <Text>
+                <Text style={styles.errorTextStyle}>
                     {this.props.error}
                 </Text>
 
                 <CardSection>
-                    <Button onPress={this.onBottonPress.bind(this)}>
-                        Login
-                    </Button>
+                    {this.renderButton()}
                 </CardSection>
             </Card>
         );
     }
 }
 
+const styles = {
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'
+    }
+};
 
-//export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
-export default LoginForm;
+const mapStateToProps = ({ auth }) => {
+    const { email, password, error, loading } = auth;
+
+    return { email, password, error, loading };
+};
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);

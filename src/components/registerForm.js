@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import {
+    emailChanged,
+    passwordChanged,
+    loginUser,
+    nickNameChanged,
+    numberChanged
+} from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class RegisterForm extends Component {
 
-    onNameChange(text) {
-
+    onNickNameChange(text) {
+        this.props.nickNameChanged(text);
     }
 
     onEmailChange(text) {
-        //this.props.emailChanged(text);
+        this.props.emailChanged(text);
     }
 
     onNumberChange(text) {
-
+        this.props.numberChanged(text);
     }
 
     onPasswordChange(text) {
-        //this.props.passwordChanged(text);
+        this.props.passwordChanged(text);
     }
 
     onBottonPress() {
@@ -33,7 +41,7 @@ class RegisterForm extends Component {
                     <Input
                         label="User Name"
                         placeholder="user_name"
-                        onChangeText={this.onNameChange.bind(this)}
+                        onChangeText={this.onNickNameChange.bind(this)}
                         value={this.props.userName}
                     />
                 </CardSection>
@@ -80,4 +88,20 @@ class RegisterForm extends Component {
     }
 }
 
-export default RegisterForm;
+const mapStateToProps = ({ auth }) => {
+    const { email, password, nickName, number, error, loading } = auth;
+
+    return { email, password, nickName, number, error, loading };
+};
+
+export default connect(
+    mapStateToProps,
+    {
+        emailChanged,
+        passwordChanged,
+        loginUser,
+        nickNameChanged,
+        numberChanged
+    }
+)(RegisterForm);
+
