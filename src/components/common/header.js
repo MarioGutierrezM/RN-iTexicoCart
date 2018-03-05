@@ -1,6 +1,7 @@
 //Import libraries for making a component 
 import React from 'react';
 import { Text, View } from 'react-native';
+import { Bar } from './bar';
 
 //Make a component 
 const Header = (props) => {
@@ -9,6 +10,7 @@ const Header = (props) => {
     return (
         <View style={viewStyle}>
             <Text style={textStyle}>{props.headerText}</Text>
+            <Bar active={2} popo={styles.viewStyle} />
         </View>
     );
 };

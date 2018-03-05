@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
+import ProductList from './productList';
 
 class SelectForm extends Component {
     render() {
@@ -10,6 +11,7 @@ class SelectForm extends Component {
             <View>
                 <LoginForm />
                 {/* <RegisterForm /> */}
+                {/* <ProductList /> */}
             </View>
         );
     }
