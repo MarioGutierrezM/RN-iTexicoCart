@@ -8,8 +8,7 @@ import logger from 'redux-logger';
 import reducers from './reducers';
 
 import { Header } from './components/common';
-import LoginForm from './components/loginForm';
-import RegisterForm from './components/registerForm';
+import SelectForm from './components/selectForm';
 
 class App extends Component {
 
@@ -23,7 +22,7 @@ class App extends Component {
       <Provider store={store}>
         <View>
           <Header headerText="iTexico Cart" />
-          <LoginForm />
+          <SelectForm />
         </View>
       </Provider>
     );

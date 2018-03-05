@@ -39,38 +39,38 @@ class RegisterForm extends Component {
             <Card>
                 <CardSection>
                     <Input
-                        label="User Name"
-                        placeholder="user_name"
+                        placeholder="User Name"
                         onChangeText={this.onNickNameChange.bind(this)}
                         value={this.props.userName}
+                        iconName="user"
                     />
                 </CardSection>
 
                 <CardSection>
                     <Input
-                        label="Email"
-                        placeholder="email@gmail.com"
+                        placeholder="Email"
                         onChangeText={this.onEmailChange.bind(this)}
                         value={this.props.email}
+                        iconName="envelope"
                     />
                 </CardSection>
 
                 <CardSection>
                     <Input
-                        label="Number"
-                        placeholder="4491234567"
+                        placeholder="Mobile Number"
                         onChangeText={this.onNumberChange.bind(this)}
                         value={this.props.number}
+                        iconName="screen-smartphone"
                     />
                 </CardSection>
 
                 <CardSection>
                     <Input
                         secureTextEntry
-                        label="Password"
-                        placeholder="password"
+                        placeholder="Password"
                         onChangeText={this.onPasswordChange.bind(this)}
                         value={this.props.password}
+                        iconName="lock"
                     />
                 </CardSection>
 

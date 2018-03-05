@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -27,7 +26,6 @@ class LoginForm extends Component {
 
         return (
             <Button onPress={this.onBottonPress.bind(this)}>
-                <Icon name="rocket" size={30} color="#900" />
                 Login
             </Button>
         );
@@ -38,20 +36,20 @@ class LoginForm extends Component {
             <Card>
                 <CardSection>
                     <Input
-                        label="Email"
-                        placeholder="email@gmail.com"
+                        placeholder="Email"
                         onChangeText={this.onEmailChange.bind(this)}
                         value={this.props.email}
+                        iconName="envelope"
                     />
                 </CardSection>
 
                 <CardSection>
                     <Input
                         secureTextEntry
-                        label="Password"
-                        placeholder="password"
+                        placeholder="Password"
                         onChangeText={this.onPasswordChange.bind(this)}
                         value={this.props.password}
+                        iconName="lock"
                     />
                 </CardSection>
 
@@ -72,6 +70,10 @@ const styles = {
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
+    },
+    iconStyle: {
+        marginTop: 11,
+        marginLeft: 5
     }
 };
 

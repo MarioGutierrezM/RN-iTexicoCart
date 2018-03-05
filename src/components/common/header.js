@@ -18,11 +18,11 @@ const styles = {
         backgroundColor: '#F8F8F8',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 60,
+        height: 200,
         paddingTop: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 5 }, //dimentions of the shadow
-        shadowOpacity: 0.9, //the darkness of the shadow
+        shadowOpacity: 0, //the darkness of the shadow
         elevation: 5,
         position: 'relative',
         marginBottom: 15
