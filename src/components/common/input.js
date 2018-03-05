@@ -1,67 +1,83 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View } from 'react-native';
 
 class Input extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            onFocusStyle: '#000'
+            isFocus: false,
+            iconColor: 'gray'
         };
     }
 
-    componentDidMount() {
-        this.setState({
-            onFocusStyle: '#000'
-        });
-        console.log('asdadads', this.state.onFocusStyle);
+    renderOnFocusInput() {
+        this.setState({ isFocus: true, iconColor: '#0080B9' });
     }
 
-    onFocusInput() {
-        this.setState({
-            onFocusStyle: '#0080B9'
-        });
-        console.log('asdadads', this.state.onFocusStyle);
+    renderOffFocusInput() {
+        this.setState({ isFocus: false, iconColor: 'gray' });
+    }
+
+    renderInput() {
+        const { value, onChangeText, placeholder, secureTextEntry } = this.props;
+        //const { inputStyle, containerStyle, iconStyle } = styles;
+
+        let styleAux = { ...styles.inputStyle };
+        if (this.state.isFocus) {
+            styleAux = { ...styleAux, ...styles.inputFocusStyle };
+        }
+        return (
+            <TextInput
+                secureTextEntry={secureTextEntry}
+                autoCorrect={false}
+                placeholder={placeholder}
+                style={styleAux}
+                value={value}
+                onChangeText={onChangeText}
+                onFocus={this.renderOnFocusInput.bind(this)}
+                onBlur={this.renderOffFocusInput.bind(this)}
+            />
+        );
     }
 
     render() {
-        const { value, onChangeText, placeholder, secureTextEntry, iconName } = this.props;
-        const { inputStyle, containerStyle, iconStyle } = styles;
+        const { iconName } = this.props;
+        const { containerStyle, iconStyle } = styles;
+
+        // const { value, onChangeText, placeholder, secureTextEntry, iconName } = this.props;
+        // const { inputStyle, containerStyle, iconStyle } = styles; chido
 
         return (
             <View style={containerStyle}>
                 <Icon
                     style={iconStyle}
-                    name={iconName} size={18} color={this.state.onFocusStyle}
+                    name={iconName} size={18} color={this.state.iconColor}
                 />
-                <TextInput
-                    secureTextEntry={secureTextEntry}
-                    autoCorrect={false}
-                    placeholder={placeholder}
-                    style={inputStyle}
-                    value={value}
-                    onChangeText={onChangeText}
-                    onFocus={this.onFocusInput.bind(this)}
-                />
+                {this.renderInput()}
             </View>
         );
     }
 }
 
-const styles = {
+const styles = { //azul: #0080B9
     inputStyle: {
         color: '#0080B9',
         paddingRight: 5,
         paddingLeft: 5,
         borderBottomWidth: 1,
-        borderColor: '#0080B9',
+        borderColor: 'gray',
         fontSize: 18,
         lineHeight: 23,
         flex: 2
     },
-    labelStyle: {
+    inputFocusStyle: {
         color: '#0080B9',
+        borderColor: '#0080B9'
+    },
+    labelStyle: {
+        color: 'gray',
         fontSize: 18,
         paddingLeft: 20
     },
