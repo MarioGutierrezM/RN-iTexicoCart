@@ -4,43 +4,52 @@ import { View, TouchableOpacity } from 'react-native';
 import { Header } from './common';
 import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
-import ProductList from './productList';
 
 class SelectForm extends Component {
     constructor() {
         super();
         this.state = {
-            headerText: [
-                'Sign In',
-                'Sign Up',
-                'iTexicoCart'
-            ],
-            formSelect: true
+            headerText: '',
+            formSelect: true,
+            barSelect: 1
         };
     }
 
     changeForm() {
-        this.setState({ formSelect: !this.formSelect });
-        console.log(this.state.formSelect);
+        if (this.state.formSelect) {
+            this.setState({ formSelect: false, barSelect: 2 });
+        } else {
+            this.setState({ formSelect: true, barSelect: 1 });
+        }
     }
 
     renderForms() {
+        let headerText = '';
+        let barStatus = 1;
+        let form = <RegisterForm />;
         if (this.state.formSelect) {
-           this.setState({ headerText: 'Sign In' });
+            headerText = 'Sign In';
+            barStatus = 1;
+            form = <LoginForm />;
         } else {
-            this.setState({ headerText: 'Sing Up' });
+            headerText = 'Sing Up';
+            barStatus = 2;
+            form = <RegisterForm />;
         }
+        return (
+            <View>
+                <TouchableOpacity onPress={this.changeForm.bind(this)} >
+                    <Header headerText={headerText} barStatus={barStatus} />
+                </TouchableOpacity >
+                {form}
+            </View>
+        );
     }
 
     render() {
         return (
             <View>
-                <TouchableOpacity onPress={this.changeForm.bind(this)} >
-                    <Header headerText="iTexico Cart" />
-                </TouchableOpacity >
-                {/* <LoginForm /> */}
-                <RegisterForm />
-                {/* <ProductList /> */}
+                {this.renderForms()}
             </View >
         );
     }

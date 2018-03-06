@@ -1,6 +1,6 @@
 //Import libraries for making a component 
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import { Bar } from './bar';
 
 //Make a component 
@@ -10,7 +10,7 @@ const Header = (props) => {
     return (
         <View style={viewStyle}>
             <Text style={textStyle}>{props.headerText}</Text>
-            <Bar active={2} />
+            <Bar active={props.barStatus} />
         </View>
     );
 };
