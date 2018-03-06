@@ -61,9 +61,9 @@ class Input extends Component {
     }
 }
 
-const styles = { //azul: #0080B9
+const styles = { //azul: #0080B9  41adec
     inputStyle: {
-        color: '#0080B9',
+        color: '#41adec',
         paddingRight: 5,
         paddingLeft: 5,
         borderBottomWidth: 1,
@@ -73,8 +73,8 @@ const styles = { //azul: #0080B9
         flex: 2
     },
     inputFocusStyle: {
-        color: '#0080B9',
-        borderColor: '#0080B9'
+        color: '#41adec',
+        borderColor: '#41adec'
     },
     labelStyle: {
         color: 'gray',

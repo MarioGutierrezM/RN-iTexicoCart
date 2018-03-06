@@ -80,7 +80,7 @@ class RegisterForm extends Component {
 
                 <CardSection>
                     <Button onPress={this.onBottonPress.bind(this)}>
-                        Register
+                        REGISTER
                     </Button>
                 </CardSection>
             </Card>

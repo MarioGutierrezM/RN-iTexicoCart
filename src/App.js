@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <View>
-          <Header headerText="iTexico Cart" />
+          {/* <Header headerText="iTexico Cart" /> */}
           <SelectForm />
         </View>
       </Provider>

@@ -1,6 +1,6 @@
 //Import libraries for making a component 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Bar } from './bar';
 
 //Make a component 
@@ -10,7 +10,7 @@ const Header = (props) => {
     return (
         <View style={viewStyle}>
             <Text style={textStyle}>{props.headerText}</Text>
-            <Bar active={2} popo={styles.viewStyle} />
+            <Bar active={2} />
         </View>
     );
 };
@@ -21,7 +21,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         height: 200,
-        paddingTop: 15,
+        paddingTop: 100,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 5 }, //dimentions of the shadow
         shadowOpacity: 0, //the darkness of the shadow
@@ -35,4 +35,4 @@ const styles = {
 };
 
 //Make the component available to other parts of the app 
-export { Header };
+export { Header }; //HACER CLASE Y PONER EL ONPRESS

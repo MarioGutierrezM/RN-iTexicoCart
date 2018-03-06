@@ -26,7 +26,7 @@ class LoginForm extends Component {
 
         return (
             <Button onPress={this.onBottonPress.bind(this)}>
-                Login
+                LOGIN
             </Button>
         );
     }
