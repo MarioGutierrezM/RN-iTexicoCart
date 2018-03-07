@@ -4,22 +4,22 @@ import axios from 'axios';
 import ProductDetail from './productDetail';
 
 class ProductList extends Component {
-    state = { albums: [] };
+    state = { products: [] };
     componentWillMount() {
-        axios.get('http://rallycoding.herokuapp.com/api/music_albums')
-        .then(response => this.setState({ albums: response.data }));
+        axios.get('https://shopping-cart-api.herokuapp.com/api/product')
+        .then(response => this.setState({ products: response.data }));
     }
 
-    renderAlbums() {
-        return this.state.albums.map(album => 
-            <ProductDetail key={album.title} album={album} />);
+    renderProducts() {
+        return this.state.products.map(product => 
+            <ProductDetail key={product.name} product={product} />);
     }
 
     render() {
-        console.log('data', this.state.albums);
+        console.log('data', this.state.products);
         return (
             <ScrollView>
-                {this.renderAlbums()}
+                {this.renderProducts()}
             </ScrollView>
         );
     }

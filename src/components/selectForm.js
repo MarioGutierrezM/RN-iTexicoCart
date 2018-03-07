@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, LayoutAnimation } from 'react-native';
 
 import { Header } from './common';
 import LoginForm from './loginForm';
@@ -14,6 +14,10 @@ class SelectForm extends Component {
             barSelect: 1
         };
     }
+
+    // componentWillUpdate() {
+    //     LayoutAnimation.spring();
+    // }
 
     changeForm() {
         if (this.state.formSelect) {

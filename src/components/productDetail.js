@@ -1,67 +1,68 @@
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
-import Card from './common/card';
-import CardSection from './common/cardSection';
-import Button from './common/button';
+import { Card, CardSection, Button } from './common';
 
-const ProductDetail = ({ album }) => {
-    const { title, artist, thumbnail_image, image, url } = album; //album = props;
-    const { 
+const ProductDetail = ({ product }) => {
+    const { name, price, imageUrl } = product; //product = props;
+    const {
         headerContentStyle,
-        thumbnailStyle,
-        thumbnailContainerStyle,
-        headerTextStyle,
-        imageStyle
-        } = styles;
+        nameTextStyle,
+        imageStyle,
+        footerContentStyle,
+        priceStyle
+    } = styles;
 
     return (
         <Card>
-            <CardSection>
-                <View style={thumbnailContainerStyle}>
-                    <Image
-                        style={thumbnailStyle}
-                        source={{ uri: thumbnail_image }} 
-                    />
-                </View>
-                <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{title}</Text>
-                    <Text>{artist}</Text>
-                </View>
-            </CardSection>
-
-            <CardSection>
+            <CardSection style={{ margin: 1 }}>
                 <Image
                     style={imageStyle}
-                    source={{ uri: image }}
+                    source={{ uri: imageUrl }}
                 />
             </CardSection>
 
-            <CardSection>
-                <Button onPress={() => Linking.openURL(url)}>
-                    Buy Now!
-                </Button>
+            <CardSection style={{ margin: 1 }}>
+                <View style={headerContentStyle}>
+                    <Text style={nameTextStyle}>{name}</Text>
+                </View>
+            </CardSection>
+
+            <CardSection style={{ margin: 1 }}>
+                <View style={footerContentStyle}>
+                    <Text style={priceStyle}>${price}</Text>
+                    <Button style={{ borderRadius: 0 }}>
+                        Add to Cart
+                    </Button>
+                </View>
             </CardSection>
         </Card>
-    ); 
+    );
 };
 
 const styles = {
-    headerContentStyle: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
-    },
-    headerTextStyle: {
-        fontSize: 18
-    },
-    thumbnailStyle: {
-        height: 50,
-        width: 50
-    },
-    thumbnailContainerStyle: {
+    footerContentStyle: {
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 10,
-        marginRight: 10
+        flex: 1
+    },
+    separator: {
+        flex: 1
+    },
+    priceStyle: {
+        fontSize: 18,
+        color: '#41adec',
+        flex: 1,
+        marginLeft: 5
+    },
+    nameTextStyle: {
+        fontSize: 20,
+        color: 'gray'
+    },
+    headerContentStyle: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flex: 1
     },
     imageStyle: {
         height: 300,
@@ -71,3 +72,31 @@ const styles = {
 };
 
 export default ProductDetail;
+
+// <Card>
+//             <CardSection>
+//                 <View style={thumbnailContainerStyle}>
+//                     <Image
+//                         style={thumbnailStyle}
+//                         source={{ uri: imageUrl }}
+//                     />
+//                 </View>
+//                 <View style={headerContentStyle}>
+//                     <Text style={headerTextStyle}>{name}</Text>
+//                     <Text>{name}</Text>
+//                 </View>
+//             </CardSection>
+
+//             <CardSection>
+//                 <Image
+//                     style={imageStyle}
+//                     source={{ uri: imageUrl }}
+//                 />
+//             </CardSection>
+
+//             <CardSection>
+//                 <Button >
+//                     Buy Now!
+//                 </Button>
+//             </CardSection>
+//         </Card>

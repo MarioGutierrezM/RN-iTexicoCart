@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 // import SplashScreen from 'react-native-splash-screen';
-import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import logger from 'redux-logger';
 import reducers from './reducers';
+import Router from './router';
 
-import SelectForm from './components/selectForm';
+import ProductList from './components/productList';
 
 class App extends Component {
 
@@ -28,10 +28,7 @@ class App extends Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger));
     return (
       <Provider store={store}>
-        <View>
-          {/* <Header headerText="iTexico Cart" /> */}
-          <SelectForm />
-        </View>
+          <Router />
       </Provider>
     );
   }
