@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import axios from 'axios';
 import ProductView from './productView';
 import { Footer } from './common';
 
-class ProductList extends Component {
+class Orders extends Component {
+
     state = { products: [] };
     componentWillMount() {
         axios.get('https://shopping-cart-api.herokuapp.com/api/product')
@@ -33,7 +34,7 @@ class ProductList extends Component {
                         {this.renderProducts()}
                     </View>
                 </ScrollView>
-                <Footer menu={1} />
+                <Footer menu={3} />
             </View>
         );
     }
@@ -55,4 +56,4 @@ const styles = {
     }
 };
 
-export default ProductList;
+export default Orders;

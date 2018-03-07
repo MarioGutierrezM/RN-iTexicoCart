@@ -1,15 +1,16 @@
 import React from 'react';
-import { Text, View, Image, Linking } from 'react-native';
+import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
 import { Card, CardSection, Button } from './common';
 
-const ProductDetail = ({ product }) => {
+const ProductView = ({ product }) => {
     const { name, price, imageUrl } = product; //product = props;
     const {
         headerContentStyle,
         nameTextStyle,
         imageStyle,
         footerContentStyle,
-        priceStyle
+        priceStyle,
+        textButtonStyle
     } = styles;
 
     return (
@@ -30,12 +31,14 @@ const ProductDetail = ({ product }) => {
             <CardSection style={{ margin: 1 }}>
                 <View style={footerContentStyle}>
                     <Text style={priceStyle}>${price}</Text>
-                    <Button style={{ borderRadius: 0 }}>
-                        Add to Cart
-                    </Button>
+                    <TouchableOpacity>
+                        <Text style={textButtonStyle}>
+                            Add to Cart
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </CardSection>
-        </Card>
+        </Card >
     );
 };
 
@@ -68,10 +71,13 @@ const styles = {
         height: 300,
         flex: 1,
         width: null
+    },
+    textButtonStyle: {
+        color: '#41adec'
     }
 };
 
-export default ProductDetail;
+export default ProductView;
 
 // <Card>
 //             <CardSection>
