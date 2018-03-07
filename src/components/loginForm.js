@@ -70,10 +70,6 @@ const styles = {
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
-    },
-    iconStyle: {
-        marginTop: 11,
-        marginLeft: 5
     }
 };
 

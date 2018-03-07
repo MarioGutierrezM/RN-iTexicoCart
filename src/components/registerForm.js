@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import {
     emailChanged,
     passwordChanged,
-    loginUser,
     nickNameChanged,
-    numberChanged
+    numberChanged,
+    registerUser
 } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -30,7 +30,18 @@ class RegisterForm extends Component {
 
     onBottonPress() {
         const { email, password } = this.props;
-        //this.props.loginUser({ email, password });
+        this.props.registerUser({ email, password });
+    }
+
+    renderButton() {
+        if (this.props.loading) {
+            return <Spinner size="large" />;
+        }
+        return (
+            <Button onPress={this.onBottonPress.bind(this)}>
+                REGISTER
+            </Button>
+        );
     }
 
 
@@ -74,19 +85,25 @@ class RegisterForm extends Component {
                     />
                 </CardSection>
 
-                <Text>
+                <Text style={styles.errorTextStyle}>
                     {this.props.error}
                 </Text>
 
                 <CardSection>
-                    <Button onPress={this.onBottonPress.bind(this)}>
-                        REGISTER
-                    </Button>
+                    {this.renderButton()}
                 </CardSection>
             </Card>
         );
     }
 }
+
+const styles = {
+    errorTextStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red'
+    }
+};
 
 const mapStateToProps = ({ auth }) => {
     const { email, password, nickName, number, error, loading } = auth;
@@ -99,7 +116,7 @@ export default connect(
     {
         emailChanged,
         passwordChanged,
-        loginUser,
+        registerUser,
         nickNameChanged,
         numberChanged
     }

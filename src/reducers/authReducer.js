@@ -5,7 +5,10 @@ import {
     LOGIN_USER_FAIL,
     LOGIN_USER,
     NICK_NAME_CHANGED,
-    NUMBER_CHANGED
+    NUMBER_CHANGED,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_FAIL,
+    REGISTER_USER
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -35,6 +38,12 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, nickName: action.payload };
         case NUMBER_CHANGED:
             return { ...state, number: action.payload };
+        case REGISTER_USER:
+            return { ...state, loading: true, error: '' };
+        case REGISTER_USER_SUCCESS:
+            return { ...state, ...INITIAL_STATE, user: action.payload };
+        case REGISTER_USER_FAIL:
+            return { ...state, loading: false, error: 'Register Failed', password: '', email: '' };
         default:
             return state;
     }
