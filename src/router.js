@@ -24,15 +24,11 @@ const RouterComponent = () => {
                         initial
                     />
                     <Scene
-                        rightTitle="Logout"
-                        onRight={() => Actions.auth()}
                         key="cart"
                         component={Cart}
                         title="Shopping bag"
                     />
                     <Scene
-                        rightTitle="Logout"
-                        onRight={() => Actions.auth()}
                         key="orders"
                         component={Orders}
                         title="My Orders"

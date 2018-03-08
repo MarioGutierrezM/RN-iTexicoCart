@@ -1,17 +1,15 @@
 import {
-    PRODUCT_ADDED,
-    PRODUCT_ADDED_SUCCESS,
-    PRODUCT_ADDED_FAIL
+    PRODUCT_ADDED_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    products: []
+    cartProducts: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case PRODUCT_ADDED_SUCCESS:
-            return { ...state, products: [...state.products, action.payload] };
+            return { ...state, cartProducts: [...state.cartProducts, action.payload] };
         default:
             return state;
     }

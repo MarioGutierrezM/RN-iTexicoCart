@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { productAdded } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { Card, CardSection } from './common';
 
 class ProductView extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     addProduct() {
         console.log('Id added', this.props.product._id);
         this.props.productAdded({
-            product: this.props.product._id,
-            quantity: 1
+            product_id: this.props.product._id,
+            quantity: 1,
+            name: this.props.product.name,
+            category: this.props.product.category,
+            price: this.props.product.price,
+            imageUrl: this.props.product.imageUrl
         });
     }
 
@@ -50,7 +50,7 @@ class ProductView extends Component {
                         <TouchableOpacity onPress={this.addProduct.bind(this)}>
                             <Text style={textButtonStyle}>
                                 Add to Cart
-                        </Text>
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </CardSection>
@@ -96,12 +96,8 @@ const styles = {
 
 };
 
-const mapStateToProps = ({ cart }) => {
-    const { products } = cart;
-    return { products };
-};
 
-export default connect(mapStateToProps, { productAdded })(ProductView);
+export default connect(null, { productAdded })(ProductView);
 
 // <Card>
 //             <CardSection>

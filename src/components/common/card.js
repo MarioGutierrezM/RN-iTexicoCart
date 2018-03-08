@@ -11,7 +11,7 @@ const Card = (props) => {
 
 const styles = {
     containerStyle: {
-        marginLeft: 5,
+        marginLeft: 10,
         marginRight: 10,
         flexDirection: 'column',
         justifyContent: 'space-around'
