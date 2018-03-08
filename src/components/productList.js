@@ -32,7 +32,7 @@ class ProductList extends Component {
                         {this.renderProducts()}
                     </View>
                 </ScrollView>
-                <Footer menu={1} />
+                <Footer menu={1} quantity={this.props.cartProducts.length} />
             </View>
         );
     }
@@ -54,10 +54,11 @@ class ProductList extends Component {
 //     }
 // };
 
-const mapStateToProps = ({ allProducts }) => {
+const mapStateToProps = ({ allProducts, cart }) => {
     const { products } = allProducts;
+    const { cartProducts } = cart;
 
-    return { products };
+    return { products, cartProducts };
 };
 
 export default connect(mapStateToProps, { getAllProducts })(ProductList);

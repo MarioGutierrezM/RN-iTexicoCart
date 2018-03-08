@@ -18,7 +18,6 @@ class Orders extends Component {
     }
 
     render() {
-        console.log('data', this.state.products);
         return (
             // <View style={{ position: 'relative' }}>
             //     <ScrollView contentContainerStyle={styles.scroolViewStyle} >

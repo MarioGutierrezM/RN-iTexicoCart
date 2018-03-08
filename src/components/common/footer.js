@@ -51,7 +51,9 @@ class Footer extends Component {
         return (
             <TouchableOpacity onPress={this.toCartRoute.bind(this)}>
                 <View style={styleAuxContainer}>
-                    <Quantity />
+                    <View style={styles.quantityContainerStyle} >
+                        <Text style={styles.quantityTextStyle}> {this.props.quantity} </Text>
+                    </View>
                     <Icon
                         name="bag" size={30} color={styleAuxText}
                     />
@@ -120,7 +122,7 @@ const styles = {
         position: 'absolute',
         backgroundColor: 'green',
         top: 19,
-        right: 20,
+        right: 17,
         borderRadius: 1000,
     },
     quantityTextStyle: {
@@ -128,14 +130,6 @@ const styles = {
         fontSize: 14,
     }
 
-};
-
-const Quantity = () => {
-    return (
-        <View style={styles.quantityContainerStyle} >
-            <Text style={styles.quantityTextStyle}> 1 </Text>
-        </View>
-    );
 };
 
 export { Footer };
