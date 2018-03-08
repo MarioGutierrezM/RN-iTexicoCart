@@ -14,3 +14,8 @@ export const REGISTER_USER = 'register_user';
 export const PRODUCT_ADDED = 'product_added';
 export const PRODUCT_ADDED_SUCCESS = 'product_added_success';
 export const PRODUCT_ADDED_FAIL = 'product_added_fail';
+
+//PRODUCTS
+export const GET_PRODUCTS = 'get_products';
+export const GET_PRODUCTS_SUCCESS = 'get_products_success';
+export const GET_PRODUCTS_FAIL = 'get_products_fail';

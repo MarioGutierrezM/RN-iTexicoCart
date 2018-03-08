@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getAllProducts } from '../actions';
 import ProductView from './productView';
 import { Footer } from './common';
 
 class ProductList extends Component {
-    state = { products: [] };
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [] 
+        };
+    }
+
     componentWillMount() {
-        axios.get('https://shopping-cart-api.herokuapp.com/api/product')
-            .then(response => this.setState({ products: response.data }));
+        this.props.getAllProducts();
     }
 
     renderProducts() {
-        return this.state.products.map(product =>
+        return this.props.products.map(product =>
             <ProductView key={product.name} product={product} />);
     }
 
     render() {
-        console.log('data', this.state.products);
         return (
-            // <View style={{ position: 'relative' }}>
+            // <View style={{ position: 'relative' }}> //estilos de paco
             //     <ScrollView contentContainerStyle={styles.scroolViewStyle} >
             //         <View style={styles.productStyle} >
             //             {this.renderProducts()}
@@ -55,4 +61,10 @@ const styles = {
     }
 };
 
-export default ProductList;
+const mapStateToProps = ({ allProducts }) => {
+    const { products } = allProducts;
+
+    return { products };
+};
+
+export default connect(mapStateToProps, { getAllProducts })(ProductList);
