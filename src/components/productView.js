@@ -1,46 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { productAdded } from '../actions';
 import { Card, CardSection, Button } from './common';
 
-const ProductView = ({ product }) => {
-    const { name, price, imageUrl } = product; //product = props;
-    const {
-        headerContentStyle,
-        nameTextStyle,
-        imageStyle,
-        footerContentStyle,
-        priceStyle,
-        textButtonStyle
-    } = styles;
+class ProductView extends Component {
 
-    return (
-        <Card>
-            <CardSection style={{ margin: 1 }}>
-                <Image
-                    style={imageStyle}
-                    source={{ uri: imageUrl }}
-                />
-            </CardSection>
+    constructor(props) {
+        super(props);
+    }
 
-            <CardSection style={{ margin: 1 }}>
-                <View style={headerContentStyle}>
-                    <Text style={nameTextStyle}>{name}</Text>
-                </View>
-            </CardSection>
+    addProduct() {
+        console.log('Id added', this.props.product._id);
+        this.props.productAdded({
+            product: this.props.product._id,
+            quantity: 1
+        });
+    }
 
-            <CardSection style={{ margin: 1 }}>
-                <View style={footerContentStyle}>
-                    <Text style={priceStyle}>${price}</Text>
-                    <TouchableOpacity>
-                        <Text style={textButtonStyle}>
-                            Add to Cart
+    render() {
+        const { name, price, imageUrl } = this.props.product; //product = props;
+        const {
+            headerContentStyle,
+            nameTextStyle,
+            imageStyle,
+            footerContentStyle,
+            priceStyle,
+            textButtonStyle
+        } = styles;
+
+        return (
+            <Card>
+                <CardSection style={{ margin: 1 }}>
+                    <Image
+                        style={imageStyle}
+                        source={{ uri: imageUrl }}
+                    />
+                </CardSection>
+
+                <CardSection style={{ margin: 1 }}>
+                    <View style={headerContentStyle}>
+                        <Text style={nameTextStyle}>{name}</Text>
+                    </View>
+                </CardSection>
+
+                <CardSection style={{ margin: 1 }}>
+                    <View style={footerContentStyle}>
+                        <Text style={priceStyle}>${price}</Text>
+                        <TouchableOpacity onPress={this.addProduct.bind(this)}>
+                            <Text style={textButtonStyle}>
+                                Add to Cart
                         </Text>
-                    </TouchableOpacity>
-                </View>
-            </CardSection>
-        </Card >
-    );
-};
+                        </TouchableOpacity>
+                    </View>
+                </CardSection>
+            </Card >
+        );
+    }
+}
 
 const styles = {
     footerContentStyle: {
@@ -75,9 +92,16 @@ const styles = {
     textButtonStyle: {
         color: '#41adec'
     }
+
+
 };
 
-export default ProductView;
+const mapStateToProps = ({ cart }) => {
+    const { products } = cart;
+    return { products };
+};
+
+export default connect(mapStateToProps, { productAdded })(ProductView);
 
 // <Card>
 //             <CardSection>
