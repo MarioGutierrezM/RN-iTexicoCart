@@ -4,7 +4,7 @@ import SelectForm from './components/selectForm';
 import ProductList from './components/productList';
 import Cart from './components/cart';
 import Orders from './components/orders';
-
+import OrderDetail from './components/orderDetail';
 
 const RouterComponent = () => {
     return (
@@ -32,6 +32,11 @@ const RouterComponent = () => {
                         key="orders"
                         component={Orders}
                         title="My Orders"
+                    />
+                    <Scene
+                        key="orderDetail"
+                        component={OrderDetail}
+                        title="Order Detail"
                     />
                 </Scene>
             </Scene>

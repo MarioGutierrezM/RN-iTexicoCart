@@ -26,13 +26,17 @@ class ProductList extends Component {
             //     </ScrollView>
             //     <Footer />
             // </View>
-            <View style={{ position: 'relative' }}>
-                <ScrollView >
-                    <View >
-                        {this.renderProducts()}
-                    </View>
-                </ScrollView>
-                <Footer menu={1} quantity={this.props.cartProducts.length} />
+            <View style={{ position: 'relative', flex: 1 }}>
+                <View style={{ flex: 9 }}>
+                    <ScrollView >
+                        <View >
+                            {this.renderProducts()}
+                        </View>
+                    </ScrollView>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Footer menu={1} quantity={this.props.cartProducts.length} />
+                </View>
             </View>
         );
     }

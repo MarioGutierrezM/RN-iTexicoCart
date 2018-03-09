@@ -1,58 +1,48 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
-import axios from 'axios';
-import ProductView from './productView';
+import { ScrollView, View } from 'react-native';
+import { connect } from 'react-redux';
+import OrderController from '../controllers/orderController';
+import OrderView from './orderView';
 import { Footer } from './common';
 
 class Orders extends Component {
 
-    state = { products: [] };
+    state = { orders: [] };
     componentWillMount() {
-        axios.get('https://shopping-cart-api.herokuapp.com/api/product')
-            .then(response => this.setState({ products: response.data }));
+        OrderController.getAllOrders(res => {
+            this.setState({ orders: res.data });
+        });
     }
 
-    renderProducts() {
-        return this.state.products.map(product =>
-            <ProductView key={product.name} product={product} />);
+    renderOrders() {
+        return this.state.orders.map((order, key) =>
+            <OrderView key={key} order={order} />);
     }
 
     render() {
+        console.log('orders', this.state.orders);
+
         return (
-            // <View style={{ position: 'relative' }}>
-            //     <ScrollView contentContainerStyle={styles.scroolViewStyle} >
-            //         <View style={styles.productStyle} >
-            //             {this.renderProducts()}
-            //         </View>
-            //     </ScrollView>
-            //     <Footer />
-            // </View>
-            <View style={{ position: 'relative' }}>
-                <ScrollView >
-                    <View >
-                        {this.renderProducts()}
-                    </View>
-                </ScrollView>
-                <Footer menu={3} />
+            <View style={{ position: 'relative', flex: 1 }}>
+                <View style={{ flex: 9 }}>
+                    <ScrollView >
+                        <View >
+                            {this.renderOrders()}
+                        </View>
+                    </ScrollView>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Footer menu={3} quantity={this.props.cartProducts.length} />
+                </View>
             </View>
         );
     }
 }
 
-const styles = {
-    scroolViewStyle: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-    },
-    productStyle: {
-        width: 180,
-        margin: 3,
-        backgroundColor: '#000',
-        borderWidth: 1,
-        borderColor: '#000', //E9E9E9
-        borderRadius: 3,
-    }
+const mapStateToProps = ({ cart }) => {
+    const { cartProducts } = cart;
+
+    return { cartProducts };
 };
 
-export default Orders;
+export default connect(mapStateToProps, {})(Orders);

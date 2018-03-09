@@ -1,32 +1,22 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { productAdded } from '../actions/cartActions';
-import CartProductView from './cartProductView';
 import { Footer, Button } from './common';
+import OrderProductDetail from './orderProductDetail';
+import OrderController from '../controllers/orderController';
 
-class Cart extends Component {
-    constructor() {
-        super();
-        this.state = {
-            totalPrice: 0
-        };
-    }
+class OrderDetail extends Component {
 
+    state = { orders: [] };
     componentWillMount() {
-    }
-
-    addPrices() {
-        let totalPrice = 0;
-        this.props.cartProducts.forEach(product => {
-            totalPrice += product.price;
+        OrderController.getOneOrder(this.props.id, res => {
+            this.setState({ orders: res.data.products });
         });
-        return totalPrice;
     }
 
-    renderCart() {
-        return this.props.cartProducts.map((product, key) =>
-            <CartProductView key={key} product={product} />);
+    renderDetails() {
+        return this.state.orders.map((product, key) =>
+            <OrderProductDetail key={key} product={product} />);
     }
 
     render() {
@@ -35,16 +25,16 @@ class Cart extends Component {
                 <View style={{ flex: 4 }}>
                     <ScrollView >
                         <View >
-                            {this.renderCart()}
+                            {this.renderDetails()}
                         </View>
                     </ScrollView>
                 </View>
 
                 <View style={{ flex: 1 }}>
                     <Button style={styles.buttonStyle}>
-                        PLACE THIS ORDER : {this.addPrices()}
+                        DELETE ORDER
                     </Button>
-                    <Footer menu={2} quantity={this.props.cartProducts.length} />
+                    <Footer menu={3} quantity={this.props.cartProducts.length} />
                 </View>
             </View>
         );
@@ -59,6 +49,8 @@ const styles = {
         right: 0,
         paddingLeft: 20,
         paddingRight: 20,
+        backgroundColor: 'red',
+        borderColor: 'red',
     }
 };
 
@@ -68,4 +60,4 @@ const mapStateToProps = ({ cart }) => {
     return { cartProducts };
 };
 
-export default connect(mapStateToProps, { productAdded })(Cart);
+export default connect(mapStateToProps, {})(OrderDetail);
