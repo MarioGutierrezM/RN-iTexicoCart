@@ -14,6 +14,13 @@ class OrderDetail extends Component {
         });
     }
 
+    deleteOrder() {
+        console.log('borrar', this.props.id);
+        OrderController.deleteOrder(this.props.id, () => {
+            this.setState({ orders: [] });
+        });
+    }
+
     renderDetails() {
         return this.state.orders.map((product, key) =>
             <OrderProductDetail key={key} product={product} />);
@@ -31,7 +38,7 @@ class OrderDetail extends Component {
                 </View>
 
                 <View style={{ flex: 1 }}>
-                    <Button style={styles.buttonStyle}>
+                    <Button style={styles.buttonStyle} onPress={this.deleteOrder.bind(this)}>
                         DELETE ORDER
                     </Button>
                     <Footer menu={3} quantity={this.props.cartProducts.length} />
