@@ -14,6 +14,7 @@ export const REGISTER_USER = 'register_user';
 export const PRODUCT_ADDED = 'product_added';
 export const PRODUCT_ADDED_SUCCESS = 'product_added_success';
 export const PRODUCT_ADDED_FAIL = 'product_added_fail';
+export const CLEAN_CART_SUCCESS = 'clean_cart_success';
 
 //PRODUCTS
 export const GET_PRODUCTS = 'get_products';

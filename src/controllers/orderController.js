@@ -18,6 +18,18 @@ export default {
         .then(res => {
             cb(res);
         }).catch(err => console.log(err));
+    },
+
+    postOrder: (body, cb) => {
+        return axios.post(url, body)
+        .then(res => {
+            console.log('New Order', res.data);
+            cb();
+        }).catch(err => console.log(err));
+    },
+
+    deleteOrder: () => {
+
     }
 
 };

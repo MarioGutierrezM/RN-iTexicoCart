@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
-import { productAdded } from '../actions/cartActions';
+import { productAdded, cleanCart } from '../actions/cartActions';
 import CartProductView from './cartProductView';
 import { Footer, Button } from './common';
+import OrderController from '../controllers/orderController';
 
 class Cart extends Component {
     constructor() {
@@ -13,7 +14,22 @@ class Cart extends Component {
         };
     }
 
-    componentWillMount() {
+    newOrder() {
+        const productsArray = [];
+        this.props.cartProducts.forEach(product => {
+            const obj = {
+                product: product.product_id,
+                quantity: product.quantity
+            };
+            productsArray.push(obj);
+        });
+        const orderObj = {
+            products: productsArray,
+            client_id: '5a8d844a25a4d800155e2e9a' //heroku
+        };
+        OrderController.postOrder(orderObj, () => {
+            this.props.cleanCart();
+        });
     }
 
     addPrices() {
@@ -41,7 +57,7 @@ class Cart extends Component {
                 </View>
 
                 <View style={{ flex: 1 }}>
-                    <Button style={styles.buttonStyle}>
+                    <Button style={styles.buttonStyle} onPress={this.newOrder.bind(this)}>
                         PLACE THIS ORDER : {this.addPrices()}
                     </Button>
                     <Footer menu={2} quantity={this.props.cartProducts.length} />
@@ -68,4 +84,4 @@ const mapStateToProps = ({ cart }) => {
     return { cartProducts };
 };
 
-export default connect(mapStateToProps, { productAdded })(Cart);
+export default connect(mapStateToProps, { productAdded, cleanCart })(Cart);
