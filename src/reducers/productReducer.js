@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
         case GET_PRODUCTS:
             return { ...state };
         case GET_PRODUCTS_SUCCESS:
-            return { ...state, products: [...state.products, ...action.payload] };
+            return { ...state, products: [...action.payload] };
         case GET_PRODUCTS_FAIL: 
             return { ...state };
         default:

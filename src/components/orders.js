@@ -2,28 +2,22 @@ import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getOrders } from '../actions';
-import OrderController from '../controllers/orderController';
 import OrderView from './orderView';
 import { Footer } from './common';
 
 class Orders extends Component {
 
-    state = { orders: [] };
     componentWillMount() {
-        OrderController.getAllOrders(res => {
-            this.setState({ orders: res.data });
-        });
-        this.props.getOrders();
+        const userIDD = '5a8d844a25a4d800155e2e9a';
+        this.props.getOrders(userIDD);//mandar id
     }
 
     renderOrders() {
-        return this.state.orders.map((order, key) =>
+        return this.props.orders.map((order, key) =>
             <OrderView key={key} order={order} />);
     }
 
     render() {
-        console.log('orders', this.state.orders);
-
         return (
             <View style={{ position: 'relative', flex: 1 }}>
                 <View style={{ flex: 9 }}>
@@ -41,11 +35,12 @@ class Orders extends Component {
     }
 }
 
-const mapStateToProps = ({ cart, myOrders }) => {
+const mapStateToProps = ({ cart, myOrders, auth }) => {
     const { cartProducts } = cart;
     const { orders } = myOrders;
+    const { userId } = auth;
 
-    return { cartProducts, orders };
+    return { cartProducts, orders, userId };
 };
 
 export default connect(mapStateToProps, { getOrders })(Orders);

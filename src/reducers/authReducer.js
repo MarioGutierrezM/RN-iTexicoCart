@@ -18,7 +18,8 @@ const INITIAL_STATE = {
     error: '',
     loading: false,
     nickName: '',
-    number: ''
+    number: '',
+    userId: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
