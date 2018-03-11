@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
+import { getOrders } from '../actions';
 import OrderController from '../controllers/orderController';
 import OrderView from './orderView';
 import { Footer } from './common';
@@ -12,6 +13,7 @@ class Orders extends Component {
         OrderController.getAllOrders(res => {
             this.setState({ orders: res.data });
         });
+        this.props.getOrders();
     }
 
     renderOrders() {
@@ -39,10 +41,11 @@ class Orders extends Component {
     }
 }
 
-const mapStateToProps = ({ cart }) => {
+const mapStateToProps = ({ cart, myOrders }) => {
     const { cartProducts } = cart;
+    const { orders } = myOrders;
 
-    return { cartProducts };
+    return { cartProducts, orders };
 };
 
-export default connect(mapStateToProps, {})(Orders);
+export default connect(mapStateToProps, { getOrders })(Orders);

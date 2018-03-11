@@ -20,3 +20,8 @@ export const CLEAN_CART_SUCCESS = 'clean_cart_success';
 export const GET_PRODUCTS = 'get_products';
 export const GET_PRODUCTS_SUCCESS = 'get_products_success';
 export const GET_PRODUCTS_FAIL = 'get_products_fail';
+
+//ORDER
+export const GET_ORDERS = 'get_orders';
+export const GET_ORDERS_SUCCESS = 'get_orders_success';
+export const GET_ORDERS_FAIL = 'get_orders_fail';
