@@ -9,6 +9,7 @@ export const NUMBER_CHANGED = 'number_changed';
 export const REGISTER_USER_SUCCESS = 'register_user_success';
 export const REGISTER_USER_FAIL = 'register_user_fail';
 export const REGISTER_USER = 'register_user';
+export const ASSIGN_USER_ID_SUCCESS = 'assign_user_id_success';
 
 //CART
 export const PRODUCT_ADDED = 'product_added';

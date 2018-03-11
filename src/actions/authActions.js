@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import ClientController from '../controllers/clientController';
 import {
     EMAIL_CHANGED,
     PASSWORD_CHANGED,
@@ -11,6 +12,7 @@ import {
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
     REGISTER_USER,
+    ASSIGN_USER_ID_SUCCESS
 } from './types';
 
 export const emailChanged = (text) => {
@@ -65,13 +67,23 @@ const loginUserSuccess = (dispatch, user) => {
     Actions.main();
 };
 
-export const registerUser = ({ email, password }) => {
+export const registerUser = ({ email, password, nickName }) => {
     return (dispatch) => {
         dispatch({ type: REGISTER_USER });
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(user => registerUserSuccess(dispatch, user))
-            .catch(() => {
+            .then(user => {
+                const body = {
+                    name: nickName,
+                    lastnamefa: '',
+                    lastnamemo: '',
+                    birthdate: '',
+                    address: email
+                };
+                ClientController.createClient(body, res => {
+                    registerUserSuccess(dispatch, user, res);
+                }).catch(() => registerUserFail(dispatch));
+            }).catch(() => {
                 registerUserFail(dispatch);
             });
     };
@@ -81,10 +93,14 @@ const registerUserFail = (dispatch) => {
     dispatch({ type: REGISTER_USER_FAIL });
 };
 
-const registerUserSuccess = (dispatch, user) => {
+const registerUserSuccess = (dispatch, user, res) => {
     dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: user
+    });
+    dispatch({
+        type: ASSIGN_USER_ID_SUCCESS,
+        payload: res._id
     });
     Actions.main();
 };

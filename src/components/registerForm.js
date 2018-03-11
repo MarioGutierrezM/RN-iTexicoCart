@@ -29,8 +29,8 @@ class RegisterForm extends Component {
     }
 
     onBottonPress() {
-        const { email, password } = this.props;
-        this.props.registerUser({ email, password });
+        const { email, password, nickName } = this.props;
+        this.props.registerUser({ email, password, nickName });
     }
 
     renderButton() {

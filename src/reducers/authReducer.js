@@ -8,7 +8,8 @@ import {
     NUMBER_CHANGED,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
-    REGISTER_USER
+    REGISTER_USER,
+    ASSIGN_USER_ID_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -44,6 +45,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, ...INITIAL_STATE, user: action.payload };
         case REGISTER_USER_FAIL:
             return { ...state, loading: false, error: 'Register Failed', password: '', email: '' };
+        case ASSIGN_USER_ID_SUCCESS:
+            return { ...state, userId: action.payload };
         default:
             return state;
     }
