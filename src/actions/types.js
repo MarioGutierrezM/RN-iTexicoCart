@@ -17,6 +17,8 @@ export const PRODUCT_ADDED_SUCCESS = 'product_added_success';
 export const PRODUCT_ADDED_FAIL = 'product_added_fail';
 export const CLEAN_CART_SUCCESS = 'clean_cart_success';
 export const PRODUCT_DELETED_SUCCESS = 'product_deleted_success';
+export const ADD_QUANTITY_SUCCESS = 'add_quantity_success';
+export const SUB_QUANTITY_SUCCESS = 'sub_quantity_success';
 
 //PRODUCTS
 export const GET_PRODUCTS = 'get_products';

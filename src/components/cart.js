@@ -35,14 +35,14 @@ class Cart extends Component {
     addPrices() {
         let totalPrice = 0;
         this.props.cartProducts.forEach(product => {
-            totalPrice += product.price;
+            totalPrice += product.price * product.quantity;
         });
         return totalPrice;
     }
 
     renderCart() {
         return this.props.cartProducts.map((product, key) =>
-            <CartProductView key={key} product={product} />);
+            <CartProductView key={key} product={{ ...product }} />);
     }
 
     render() {

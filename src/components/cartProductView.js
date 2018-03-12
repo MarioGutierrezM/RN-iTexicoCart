@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { productDeleted } from '../actions';
+import { productDeleted, addOne, subtractOne } from '../actions';
 import { Card, CardSection } from './common';
 
 class CartProductView extends Component {
 
     deleteProduct() {
         this.props.productDeleted(this.props.product.product_id);
+    }
+
+    subtract() {
+        this.props.subtractOne(this.props.product.product_id);
+    }
+
+    add() {
+        this.props.addOne(this.props.product.product_id);
     }
 
     render() {
@@ -57,7 +65,10 @@ class CartProductView extends Component {
                         </View>
 
                         <View style={containerRigthSectionStyle}>
-                            <TouchableOpacity style={simbolContainerStyle}>
+                            <TouchableOpacity
+                                style={simbolContainerStyle}
+                                onPress={this.add.bind(this)}
+                            >
                                 <Text style={simbolTextStyle}>+</Text>
                             </TouchableOpacity>
                             <View style={containerQuantityStyle}>
@@ -65,7 +76,10 @@ class CartProductView extends Component {
                                     {this.props.product.quantity}
                                 </Text>
                             </View>
-                            <TouchableOpacity style={simbolContainerStyle}>
+                            <TouchableOpacity
+                                style={simbolContainerStyle}
+                                onPress={this.subtract.bind(this)}
+                            >
                                 <Text style={simbolTextStyle}>-</Text>
                             </TouchableOpacity>
                         </View>
@@ -159,9 +173,9 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ cart }) => {
-    const { cartProducts } = cart;
-    return { cartProducts };
-};
+// const mapStateToProps = ({ cart }) => {
+//     const { cartProducts } = cart;
+//     return { cartProducts };
+// };
 
-export default connect(mapStateToProps, { productDeleted })(CartProductView);
+export default connect(null, { productDeleted, addOne, subtractOne })(CartProductView);
