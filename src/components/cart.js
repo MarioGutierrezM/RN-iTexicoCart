@@ -25,7 +25,7 @@ class Cart extends Component {
         });
         const orderObj = {
             products: productsArray,
-            client_id: '5a8d844a25a4d800155e2e9a' //heroku
+            client_id: this.props.userId
         };
         OrderController.postOrder(orderObj, () => {
             this.props.cleanCart();
@@ -78,10 +78,11 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ cart }) => {
+const mapStateToProps = ({ cart, auth }) => {
     const { cartProducts } = cart;
+    const { userId } = auth;
 
-    return { cartProducts };
+    return { cartProducts, userId };
 };
 
 export default connect(mapStateToProps, { productAdded, cleanCart })(Cart);

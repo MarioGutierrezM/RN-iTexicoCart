@@ -10,5 +10,11 @@ export default {
                 console.log('New Client', res.data);
                 cb(res.data);
             }).catch();
+    },
+
+    getClients: (cb) => {
+        return axios.get(url)
+            .then(res => cb(res.data))
+            .catch(err => console.log(err));
     }
 };

@@ -8,8 +8,7 @@ import { Footer } from './common';
 class Orders extends Component {
 
     componentWillMount() {
-        const userIDD = '5a8d844a25a4d800155e2e9a';
-        this.props.getOrders(userIDD);//mandar id
+        this.props.getOrders(this.props.userId);
     }
 
     renderOrders() {
