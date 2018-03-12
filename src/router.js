@@ -5,6 +5,7 @@ import ProductList from './components/productList';
 import Cart from './components/cart';
 import Orders from './components/orders';
 import OrderDetail from './components/orderDetail';
+import ProductDetail from './components/productDetail';
 
 const RouterComponent = () => {
     return (
@@ -22,6 +23,11 @@ const RouterComponent = () => {
                         component={ProductList}
                         title="iTexico Products"
                         initial
+                    />
+                    <Scene
+                        key="productDetail"
+                        component={ProductDetail}
+                        title="Product Detail"
                     />
                     <Scene
                         key="cart"

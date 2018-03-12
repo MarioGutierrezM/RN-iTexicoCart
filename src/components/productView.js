@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { productAdded } from '../actions';
 import { Card, CardSection } from './common';
 
@@ -16,6 +17,10 @@ class ProductView extends Component {
             price: this.props.product.price,
             imageUrl: this.props.product.imageUrl
         });
+    }
+
+    seeDetail() {
+        Actions.productDetail({ product: this.props.product });
     }
 
     render() {
@@ -40,9 +45,9 @@ class ProductView extends Component {
                     </CardSection>
 
                     <CardSection style={{ margin: 1 }}>
-                        <View style={headerContentStyle}>
+                        <TouchableOpacity style={headerContentStyle} onPress={this.seeDetail.bind(this)}>
                             <Text style={nameTextStyle}>{name}</Text>
-                        </View>
+                        </TouchableOpacity>
                     </CardSection>
 
                     <CardSection style={{ margin: 1 }}>

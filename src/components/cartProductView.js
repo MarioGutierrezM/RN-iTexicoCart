@@ -152,7 +152,8 @@ const styles = {
     },
     quantityTextStyle: {
         color: '#41adec',
-        fontSize: 14,
+        fontSize: 18,
+        fontWeight: 'bold'
     },
     cardSectionStyle: {
         margin: 1,
