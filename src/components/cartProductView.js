@@ -103,8 +103,8 @@ const styles = {
         height: 100,
         width: 100,
         justifyContent: 'flex-start',
-        borderColor: 'gray',
-        borderWidth: 1,
+        borderColor: '#cccccc',
+        borderWidth: 2,
     },
     containerInfoStyle: {
         backgroundColor: 'white',
@@ -135,16 +135,16 @@ const styles = {
     containerQuantityStyle: {
         backgroundColor: 'white',
         borderRadius: 1000,
-        borderColor: 'gray',
-        borderWidth: 1,
+        borderColor: '#cccccc',
+        borderWidth: 2,
         paddingLeft: 10,
         paddingRight: 10,
         justifyContent: 'center'
     },
     simbolTextStyle: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
-        color: 'gray'
+        color: '#cccccc'
     },
     simbolContainerStyle: {
         justifyContent: 'center',
@@ -156,26 +156,24 @@ const styles = {
     },
     cardSectionStyle: {
         margin: 1,
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomWidth: 2,
+        borderBottomColor: '#cccccc',
     },
     deleteContainerStyle: {
         backgroundColor: 'red',
-        borderRadius: 25,
-        width: 30,
+        borderRadius: 27/2,
+        width: 27,
+        height: 27,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        
     },
     deleteTextStyle: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 22
     }
 };
-
-// const mapStateToProps = ({ cart }) => {
-//     const { cartProducts } = cart;
-//     return { cartProducts };
-// };
 
 export default connect(null, { productDeleted, addOne, subtractOne })(CartProductView);

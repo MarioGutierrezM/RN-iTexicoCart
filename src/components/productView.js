@@ -30,31 +30,33 @@ class ProductView extends Component {
         } = styles;
 
         return (
-            <Card>
-                <CardSection style={{ margin: 1 }}>
-                    <Image
-                        style={imageStyle}
-                        source={{ uri: imageUrl }}
-                    />
-                </CardSection>
+            <View style={styles.productStyle}>
+                <Card>
+                    <CardSection style={{ margin: 1 }}>
+                        <Image
+                            style={imageStyle}
+                            source={{ uri: imageUrl }}
+                        />
+                    </CardSection>
 
-                <CardSection style={{ margin: 1 }}>
-                    <View style={headerContentStyle}>
-                        <Text style={nameTextStyle}>{name}</Text>
-                    </View>
-                </CardSection>
+                    <CardSection style={{ margin: 1 }}>
+                        <View style={headerContentStyle}>
+                            <Text style={nameTextStyle}>{name}</Text>
+                        </View>
+                    </CardSection>
 
-                <CardSection style={{ margin: 1 }}>
-                    <View style={footerContentStyle}>
-                        <Text style={priceStyle}>${price}</Text>
-                        <TouchableOpacity onPress={this.addProduct.bind(this)}>
-                            <Text style={textButtonStyle}>
-                                Add to Cart
+                    <CardSection style={{ margin: 1 }}>
+                        <View style={footerContentStyle}>
+                            <Text style={priceStyle}>${price}</Text>
+                            <TouchableOpacity onPress={this.addProduct.bind(this)}>
+                                <Text style={textButtonStyle}>
+                                    Add to Cart
                             </Text>
-                        </TouchableOpacity>
-                    </View>
-                </CardSection>
-            </Card >
+                            </TouchableOpacity>
+                        </View>
+                    </CardSection>
+                </Card >
+            </View>
         );
     }
 }
@@ -72,12 +74,14 @@ const styles = {
     priceStyle: {
         fontSize: 18,
         color: '#41adec',
+        fontWeight: 'bold',
         flex: 1,
         marginLeft: 5
     },
     nameTextStyle: {
         fontSize: 20,
-        color: 'gray'
+        color: 'gray',
+        fontWeight: 'bold',
     },
     headerContentStyle: {
         flexDirection: 'row',
@@ -85,44 +89,21 @@ const styles = {
         flex: 1
     },
     imageStyle: {
-        height: 300,
+        height: 200,
         flex: 1,
         width: null
     },
     textButtonStyle: {
-        color: '#41adec'
+        color: '#41adec',
+        fontWeight: 'bold',
+        fontSize: 18
+    },
+    productStyle: {
+        width: 200,
+        height: 300,
+        margin: 3,
+        backgroundColor: 'white',
     }
-
-
 };
 
-
 export default connect(null, { productAdded })(ProductView);
-
-// <Card>
-//             <CardSection>
-//                 <View style={thumbnailContainerStyle}>
-//                     <Image
-//                         style={thumbnailStyle}
-//                         source={{ uri: imageUrl }}
-//                     />
-//                 </View>
-//                 <View style={headerContentStyle}>
-//                     <Text style={headerTextStyle}>{name}</Text>
-//                     <Text>{name}</Text>
-//                 </View>
-//             </CardSection>
-
-//             <CardSection>
-//                 <Image
-//                     style={imageStyle}
-//                     source={{ uri: imageUrl }}
-//                 />
-//             </CardSection>
-
-//             <CardSection>
-//                 <Button >
-//                     Buy Now!
-//                 </Button>
-//             </CardSection>
-//         </Card>

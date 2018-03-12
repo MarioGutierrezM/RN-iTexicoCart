@@ -18,20 +18,10 @@ class ProductList extends Component {
 
     render() {
         return (
-            // <View style={{ position: 'relative' }}> //estilos de paco
-            //     <ScrollView contentContainerStyle={styles.scroolViewStyle} >
-            //         <View style={styles.productStyle} >
-            //             {this.renderProducts()}
-            //         </View>
-            //     </ScrollView>
-            //     <Footer />
-            // </View>
             <View style={{ position: 'relative', flex: 1 }}>
                 <View style={{ flex: 9 }}>
-                    <ScrollView >
-                        <View >
+                    <ScrollView contentContainerStyle={styles.scroolViewStyle}>
                             {this.renderProducts()}
-                        </View>
                     </ScrollView>
                 </View>
                 <View style={{ flex: 1 }}>
@@ -42,21 +32,15 @@ class ProductList extends Component {
     }
 }
 
-// const styles = {
-//     scroolViewStyle: {
-//         flexDirection: 'row',
-//         flexWrap: 'wrap',
-//         justifyContent: 'center'
-//     },
-//     productStyle: {
-//         width: 180,
-//         margin: 3,
-//         backgroundColor: '#000',
-//         borderWidth: 1,
-//         borderColor: '#000', //E9E9E9
-//         borderRadius: 3,
-//     }
-// };
+const styles = {
+    scroolViewStyle: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: '100%',
+        backgroundColor: '#d9d9d9',
+        justifyContent: 'center',
+    },
+};
 
 const mapStateToProps = ({ allProducts, cart }) => {
     const { products } = allProducts;
