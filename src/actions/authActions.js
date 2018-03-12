@@ -50,7 +50,6 @@ export const loginUser = ({ email, password }) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(user => {
                 ClientController.getClients(res => {
-                    console.log('res', res);
                     const userID = res.filter(client => client.address === email);
                     loginUserSuccess(dispatch, user, userID[0]._id);
                 }).catch(() => loginUserFail(dispatch));

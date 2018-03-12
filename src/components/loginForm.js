@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -18,7 +17,7 @@ class LoginForm extends Component {
     onBottonPress() {
         const { email, password } = this.props;
         this.props.loginUser({ email, password });
-        //Actions.main();
+        //this.props.loginUser({ email: 'C@c.com', password: '123123' });
     }
 
     renderButton() {

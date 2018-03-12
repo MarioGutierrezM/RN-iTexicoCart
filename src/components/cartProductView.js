@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { productAdded } from '../actions';
+import { productDeleted } from '../actions';
 import { Card, CardSection } from './common';
 
 class CartProductView extends Component {
+
+    deleteProduct() {
+        this.props.productDeleted(this.props.product.product_id);
+    }
 
     render() {
         const {
@@ -19,13 +23,20 @@ class CartProductView extends Component {
             categoryTextStyle,
             simbolTextStyle,
             simbolContainerStyle,
-            containerRigthSectionStyle
+            containerRigthSectionStyle,
+            deleteContainerStyle,
+            deleteTextStyle
         } = styles;
 
         return (
             <Card>
                 <CardSection style={cardSectionStyle}>
                     <View style={containerStyle}>
+                        <View style={deleteContainerStyle}>
+                            <TouchableOpacity onPress={this.deleteProduct.bind(this)}>
+                                <Text style={deleteTextStyle}>X</Text>
+                            </TouchableOpacity>
+                        </View>
                         <Image
                             source={{ uri: this.props.product.imageUrl }}
                             style={imageStyle}
@@ -133,7 +144,24 @@ const styles = {
         margin: 1,
         borderBottomWidth: 1,
         borderBottomColor: 'gray',
+    },
+    deleteContainerStyle: {
+        backgroundColor: 'red',
+        borderRadius: 25,
+        width: 30,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    deleteTextStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 24
     }
 };
 
-export default CartProductView;
+const mapStateToProps = ({ cart }) => {
+    const { cartProducts } = cart;
+    return { cartProducts };
+};
+
+export default connect(mapStateToProps, { productDeleted })(CartProductView);
