@@ -20,7 +20,10 @@ class ProductView extends Component {
     }
 
     seeDetail() {
-        Actions.productDetail({ product: this.props.product });
+        Actions.productDetail({
+            product: this.props.product,
+            functionAdd: this.addProduct.bind(this)
+        });
     }
 
     render() {
@@ -45,7 +48,9 @@ class ProductView extends Component {
                     </CardSection>
 
                     <CardSection style={{ margin: 1 }}>
-                        <TouchableOpacity style={headerContentStyle} onPress={this.seeDetail.bind(this)}>
+                        <TouchableOpacity
+                            style={headerContentStyle} onPress={this.seeDetail.bind(this)}
+                        >
                             <Text style={nameTextStyle}>{name}</Text>
                         </TouchableOpacity>
                     </CardSection>
